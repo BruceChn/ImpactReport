@@ -6,7 +6,7 @@
 		<meta name = "viewport" content = "width = device-width,initial-scale = 1">
 		<meta name = "description" content = "">
 		<meta name = "author" content = "">
-		<title>Welcome to FlaskTaskr!!</title>
+		<title>Impact Report</title>
 		<link rel = "stylesheet" href = "{{ url_for('static',filename = 'css/main.css')}}">
 		<link rel = "stylesheet" href = "{{ url_for('static',filename = 'css/bootstrap.min.css')}}">
 
@@ -77,8 +77,20 @@
 		</div>
 
 		<!-- scripts -->
+
 		<script src = "{{url_for('static',filename = 'js/bootstrap.js')}}"></script>
 		<script src = "{{url_for('static',filename = 'js/jquery.js')}}"></script>
+		<script type = "text/javascript">
+			var overview_options = JSON.parse('{{overview_options|safe}}');
+			var average_comparion_options = JSON.parse('{{average_comparion_options|safe}}');
+			var percentage_options1 = JSON.parse('{{percentage_options1|safe}}');
+			console.log('ishere');
+			console.log(percentage_options1);
+
+		</script>
+
 		<script src = "{{url_for('static',filename = 'js/main.js')}}"></script>
+		
+
 	</body>
 </html>

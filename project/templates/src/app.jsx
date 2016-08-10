@@ -1,70 +1,36 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+
 var Highcharts = require('highcharts');
-//require('highcharts/modules/bar')(Highcharts);
+HighchartsMore = require('highcharts-more')(Highcharts)
+require('highcharts/modules/solid-gauge')(Highcharts);
 var HighChart = require('./high-chart');
+
 
 var App = React.createClass({
   getInitialState:function(){
     return{
-      options:{
-        chart: {
-          type: 'bar',
-        },
-
-        title: {
-          text: "User's Overview",
-        },
-        xAxis:{
-          categories:['Writing Score','Science Score','Math Score','Reading Score','Current Overall Score','Best Overall Score To Date'],
-          title:{
-            text:null
-          }
-        },
-        color:['#A9A9A9','#A9A9A9','#A9A9A9','#A9A9A9','#1E90FF','#6B8E23'],
-        yAxis:{
-          min:0,
-          title:{
-            text:null
-          },
-          max:1200
-        },
-        series: [{
-          showInLegend:false,
-          name:"score",
-          data: [{
-            y:100,
-            color:'#A9A9A9'
-            },
-            {
-              y:400,
-              color:'#A9A9A9'
-            },
-            {
-              y:500,
-              color:'#A9A9A9'
-            },
-            {
-              y:600,
-              color:'#A9A9A9'
-            },
-            {
-              y:900,
-              color:'#1E90FF'
-            },
-            {
-              y:1100,
-              color:'#6B8E23'
-            }]
-
-        }]
-      },
-      container: 'react-container'
+      overview_options : overview_options,
+      average_comparion_options: average_comparion_options,
+      container1: 'react-container',
+      container2: 'react-container2',
+      container3: 'react-container3',
+      percentage_options1:percentage_options1
     }
   },
   render:function(){
     console.log(this.state.container);
-    return <HighChart container = {this.state.container} options = {this.state.options}/>
+    return <div>
+      <div className = "col-sm-12">
+        <HighChart container = {this.state.container1} options = {this.state.overview_options}/>
+      </div>
+      <div className = "col-sm-6">
+        <HighChart container = {this.state.container2} options = {this.state.average_comparion_options}/>
+      </div>
+      <div className = "col-sm-6">
+        <HighChart container = {this.state.container3} options = {this.state.percentage_options1} />
+      </div>
+  </div>
 
   }
 })
