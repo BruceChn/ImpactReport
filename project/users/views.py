@@ -133,7 +133,7 @@ def overview():
 	plotOptions = {
 		'solidgauge':{
 			'dataLabels':{
-				'y':5,
+				'y':-70,
 				'borderWidth':0,
 				'useHTML':True
 			}
@@ -142,19 +142,42 @@ def overview():
 	series3 = [{
 		'enableMouseTracking': False,
 		'name':'percentage',
-		'data':[80],
+		'data':[20],
+		'dataLabels':{
+			'format':r'<div style = \"text-align:center;\"><span style =\"font-size:35px;\">{y}%</span></div>'
+		},
 		'tooltip':{
 			'valueSuffix':'%'
 		}
+	}]
+	title3 = {
+		'text':"Regional Average Comparison"
+	}
+	series4 = [{
+		'name' :'Users',
+		'color':'#FFA500',
+		'data' : [400,799,1200,500,200,100]
+	},
+	{
+		'name' :'Regional Average(Taken from statiscal Data)',
+		'color' : "#00BFFF",
+		'data':[200,300,500,700,600,500]
 	}]
 
 	overview_options = json.dumps(createOptions(credits,barchart,title1,xAxis1,yAxis1,series1)).replace("'",r"\'")
 	average_comparion_options = json.dumps(createOptions(credits,barchart,title2,xAxis1,yAxis1,series2)).replace("'",r"\'")
 	percentage_options1 = createOptions(credits,solidgauge,None,None,yAxis2,series3,pane)
+
 	percentage_options1['plotOptions'] = plotOptions
 	percentage_options1['tooltip'] = tooltip
+	percentage_options2 = percentage_options1
 	percentage_options1 = json.dumps(percentage_options1).replace("'",r"\'")
-	print percentage_options1
+	regional_average_options = json.dumps(createOptions(credits,barchart,title3,xAxis1,yAxis1,series4)).replace("'",r"\'")
+
+
+	percentage_options2['yAxis']['title']['text'] = "Bruce Chan is ranking in the 80 percentile"
+	percentage_options2['series'][0]['data'][0] = 80
+	percentage_options2 = json.dumps(percentage_options2).replace("'",r"\'")
 	if 'logged_in' in session:
 		return redirect(url_for("overview.overview"))
 	if request.method == 'POST':
@@ -165,4 +188,4 @@ def overview():
 				redirect(url_for("overview.overview"))
 			else:
 				error = "Invalid username or password"
-	return render_template('overview.html',form = form,error = error,overview_options = overview_options,average_comparion_options = average_comparion_options,percentage_options1 = percentage_options1)
+	return render_template('overview.html',form = form,error = error,overview_options = overview_options,average_comparion_options = average_comparion_options,percentage_options1 = percentage_options1,regional_average_options = regional_average_options,percentage_options2 = percentage_options2)
