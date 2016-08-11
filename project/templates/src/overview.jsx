@@ -5,9 +5,11 @@ var Highcharts = require('highcharts');
 HighchartsMore = require('highcharts-more')(Highcharts)
 require('highcharts/modules/solid-gauge')(Highcharts);
 var HighChart = require('./high-chart');
+var Header = require('./header');
 
 
-var App = React.createClass({
+
+var Overview = React.createClass({
   getInitialState:function(){
     return{
       overview_options : overview_options,
@@ -43,6 +45,10 @@ var App = React.createClass({
   </div>
 
   }
-})
-var element = React.createElement(App,{});
+});
+
+var element = React.createElement(Overview,{});
+var element1 = React.createElement(Header,{title:pageTitle});
+
 ReactDOM.render(element,document.querySelector('.react-charts'));
+ReactDOM.render(element1,document.querySelector('.header'));

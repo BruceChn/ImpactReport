@@ -28,6 +28,17 @@
 
 <div class = "react-charts">
 </div>
+<script type = "text/javascript">
+  var overview = true;
+	var overview_options = JSON.parse('{{overview_options|safe}}');
+	var average_comparion_options = JSON.parse('{{average_comparion_options|safe}}');
+	var percentage_options1 = JSON.parse('{{percentage_options1|safe}}');
+	var regional_average_options = JSON.parse('{{regional_average_options|safe}}');
+	var percentage_options2 = JSON.parse('{{percentage_options2|safe}}');
+	var pageTitle = "Bruce's Overview";
 
+</script>
+
+<script src = "{{url_for('static',filename = 'js/overview.js')}}"></script>
 
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class = "react-charts">
+</div>
+<script type = "text/javascript">
+	var progress = JSON.parse('{{progress|safe}}');
+  var pageTitle = "Bruce's Progress Tracker";
+
+  var overall = JSON.parse('{{overall|safe}}');
+  var math = JSON.parse('{{math|safe}}');
+  var science = JSON.parse('{{science|safe}}');
+  var reading = JSON.parse('{{reading|safe}}');
+  var writing = JSON.parse('{{writing|safe}}');
+
+</script>
+
+<script src = "{{url_for('static',filename = 'js/progress.js')}}"></script>
+{% endblock %}

@@ -3,7 +3,6 @@ var HighCharts = require('highcharts');
 
 module.exports = React.createClass({
   componentDidMount:function(){
-    console.log(this.props.container);
     if(this.props.modules){
       this.props.modules.forEach(function(module){
         module(HighCharts);

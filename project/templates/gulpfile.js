@@ -6,9 +6,9 @@ var watchify = require('watchify');
 var babelify = require('babelify');
 
 
-gulp.task('default',function(){
+gulp.task('overview',function(){
 	var bundler = watchify(browserify({
-		entries:['./src/app.jsx'],
+		entries:['./src/overview.jsx'],
 		transform:[['babelify',{presets:["react"]}]],
 		extensions:['.jsx'],
 		debug : true,
@@ -22,10 +22,36 @@ gulp.task('default',function(){
 		return bundler
 			.bundle()
 			.on('error',gultil.log.bind(gultil,'Browserify Error'))
-			.pipe(source('main.js'))
+			.pipe(source('overview.js'))
 			.pipe(gulp.dest('../static/js'));
 
 	}
 	build();
 	bundler.on('update',build);
 });
+
+gulp.task('progress',function(){
+	var bundler = watchify(browserify({
+		entries:['./src/progress.jsx'],
+		transform:[['babelify',{presets:["react"]}]],
+		extensions:['.jsx'],
+		debug : true,
+		cache:{},
+		packageCache:{},
+		fullPaths:true
+	}));
+
+	function build(file){
+		if(file) gultil.log('Recompiling ' + file);
+		return bundler
+			.bundle()
+			.on('error',gultil.log.bind(gultil,'Browserify Error'))
+			.pipe(source('progress.js'))
+			.pipe(gulp.dest('../static/js'));
+
+	}
+	build();
+	bundler.on('update',build);
+});
+
+gulp.task('default',['overview','progress']);

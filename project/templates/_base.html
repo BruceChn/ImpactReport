@@ -26,8 +26,8 @@
 			</div>
 			<div class = "collapse navbar-collapse">
 				<ul class = "nav navbar-nav">
-					<li><a href = "/Overview">Overview</a></li>
-					<li><a href = "/ProgressTracker">ProgressTracker</a></li>
+					<li><a href = "/overview">Overview</a></li>
+					<li><a href = "/progresstracker">ProgressTracker</a></li>
 					<li><a href = "/Report">Report</a></li>
 				</ul>
 				{% if session.logged_in %}
@@ -40,29 +40,7 @@
 		</div>
 		<div class = "container">
 			<div class = "header">
-				<div class = "row">
-					<div class = "col-sm-4">
-						<img class = "image" id = "logo" src = "static/image/icon TSOG.png">
-					</div>
-					<div class = "col-sm-8">
-						<img class = "image" id = "poster" src = "static/image/poster.png">
-						<h2 align = "center">
-							BruceChan : Overview
-						</h2>
-						<div class = "col-sm-6 col-sm-offset-3">
-							<p align = "center" style ="font-size:4em; border:0.1em solid black">
-								Level 1
-							</p>
 
-						</div>
-						<div class = "col-sm-2" style ="margin-left:-3.6em;">
-							<p align = "left" style ="font-size:4em;">
-								&rArr;
-							</p>
-
-						</div>
-					</div>
-				</div>
 			</div>
 			<div class = "content">
 
@@ -80,16 +58,7 @@
 
 		<script src = "{{url_for('static',filename = 'js/bootstrap.js')}}"></script>
 		<script src = "{{url_for('static',filename = 'js/jquery.js')}}"></script>
-		<script type = "text/javascript">
-			var overview_options = JSON.parse('{{overview_options|safe}}');
-			var average_comparion_options = JSON.parse('{{average_comparion_options|safe}}');
-			var percentage_options1 = JSON.parse('{{percentage_options1|safe}}');
-			var regional_average_options = JSON.parse('{{regional_average_options|safe}}');
-			var percentage_options2 = JSON.parse('{{percentage_options2|safe}}');
 
-		</script>
-
-		<script src = "{{url_for('static',filename = 'js/main.js')}}"></script>
 
 
 	</body>

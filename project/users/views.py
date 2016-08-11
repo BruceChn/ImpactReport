@@ -31,10 +31,12 @@ def createOptions(credits,chart,title,xAxis,yAxis,series,pane = None):
 	options['yAxis'] = yAxis
 	options['series'] = series
 	options['pane'] = pane
+
 	return options
 
 ### routes
 @users_blueprint.route('/',methods = ['GET','POST'])
+@users_blueprint.route('/overview')
 def overview():
 	error = None
 	form = LoginForm(request.form)
@@ -167,9 +169,9 @@ def overview():
 	overview_options = json.dumps(createOptions(credits,barchart,title1,xAxis1,yAxis1,series1)).replace("'",r"\'")
 	average_comparion_options = json.dumps(createOptions(credits,barchart,title2,xAxis1,yAxis1,series2)).replace("'",r"\'")
 	percentage_options1 = createOptions(credits,solidgauge,None,None,yAxis2,series3,pane)
-
 	percentage_options1['plotOptions'] = plotOptions
 	percentage_options1['tooltip'] = tooltip
+
 	percentage_options2 = percentage_options1
 	percentage_options1 = json.dumps(percentage_options1).replace("'",r"\'")
 	regional_average_options = json.dumps(createOptions(credits,barchart,title3,xAxis1,yAxis1,series4)).replace("'",r"\'")
@@ -189,3 +191,122 @@ def overview():
 			else:
 				error = "Invalid username or password"
 	return render_template('overview.html',form = form,error = error,overview_options = overview_options,average_comparion_options = average_comparion_options,percentage_options1 = percentage_options1,regional_average_options = regional_average_options,percentage_options2 = percentage_options2)
+
+
+@users_blueprint.route('/progresstracker')
+def progresstrack():
+	credits = {
+		'enabled':False
+	}
+	semidonut = {
+		'type':'pie'
+	}
+	title ={
+		'text':'Level 1 Training Program',
+		'align': 'center',
+		'verticalAlign':'top',
+		'y':35
+	}
+	tooltip = {
+		'pointFormat':'{series.name}: <b>{point.percentage:.lf}%</b>'
+	}
+	plotOptions={
+		'pie':{
+			'dataLabels':{
+				'enabled':True,
+				'distance':-50,
+				'style':{
+					'fontWeight':'bold',
+					'color':'white',
+					'textShadow':'0px 1px 2px black'
+				}
+			},
+			'startAngle':-90,
+			'endAngle':90,
+			'center':['50%',"75%"],
+			'size':'125%'
+		}
+	}
+	subtitle = {
+		'verticalAlign':'middle',
+		'align':'center',
+		'text' : "Level 1",
+		'y' : 85,
+		'style':{
+			'font-size':'35px',
+			'fontWeight':'bold'
+		}
+	}
+	series = [{
+		'name':'Progress',
+		'data':[
+			['Reading',30],
+			['Math',32],
+			['Science',18],
+			['Writing',20]
+		],
+		'innerSize':'45%',
+		'dataLabels':{
+            'format': r'<div style = \"text-align:center;\"><span style = \"font-size:35px\">{point.name}-{point.percentage:.lf}%</span></div>'
+		}
+    }]
+	progress = createOptions(credits,semidonut,title,None,None,series)
+	progress['plotOptions'] = plotOptions
+	progress['tooltip'] = tooltip
+	progress['subtitle'] = subtitle
+	progress = json.dumps(progress).replace("'",r"\'")
+	title['text'] = 'Overall'
+
+	plotOptions1 =  {
+                'pie': {
+                    'allowPointSelect': True,
+                    'cursor': 'pointer',
+                    'dataLabels': {
+                        'enabled': False
+                    },
+                    'showInLegend': True,
+					'center':['50%',"50%"],
+					'size':'75%'
+                }
+            }
+	series1 = [{
+		'name':'Progress',
+		'colorByPoint':True,
+		'innerSize':'50%',
+		'data':[{
+			'name':'Percentage Complete',
+			'y':25,
+			'color':'#FFA500'
+		},{
+			'name':'Percentage Remaining',
+			'y':75,
+			'color':'#87CEFA'
+		}]
+	}]
+	overall = createOptions(credits,semidonut,title,None,None,series1)
+	overall['tooltip'] = tooltip
+
+	overall['plotOptions'] = plotOptions1
+	math = overall
+	reading = overall
+	writing = overall
+	science = overall
+	overall = json.dumps(overall).replace("'",r"\'")
+	math['title']['text'] = "Math"
+	math['series'][0]['data'][0]['y'] = 60
+	math['series'][0]['data'][1]['y'] = 40
+	math = json.dumps(math).replace("'",r"\'")
+	science['title']['text'] = "Science"
+	science['series'][0]['data'][0]['y'] = 70
+	science['series'][0]['data'][1]['y'] = 30
+	science = json.dumps(science).replace("'",r"\'")
+	reading['title']['text'] = "Reading"
+	reading['series'][0]['data'][0]['y'] = 25
+	reading['series'][0]['data'][1]['y'] = 75
+	reading = json.dumps(reading).replace("'",r"\'")
+
+	writing['title']['text'] = "Writing"
+	writing['series'][0]['data'][0]['y'] = 55
+	writing['series'][0]['data'][1]['y'] = 45
+	writing = json.dumps(writing).replace("'",r"\'")
+	return render_template('progresstracker.html',progress = progress,overall = overall,math = math,science = science,reading = reading,writing = writing)
