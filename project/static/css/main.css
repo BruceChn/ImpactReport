@@ -11,21 +11,19 @@ body {
 	position:relative;
 	padding-bottom:30px;
 }
-a, h1, h2 {
-	color: #377BA8;
-}
+
 
 h1, h2 {
 	font-family: 'Georgia', serif;
 	margin: 0;
 }
 
+
+
 h1 {
 	border-bottom: 2px solid #eee;
 }
-h2 {
-	font-size: 1.5em;
-}
+
 #logo{
 	width:20em;
 	height:20em;
@@ -67,6 +65,14 @@ h2 {
 }
 .add_task dl {
 	font-weight: bold;
+}
+.col-sm-12 ul li{
+	font-size:2em;
+	line-height: 1;
+}
+.col-sm-12 p{
+	font-size:2em;
+	line-height: 1;
 }
 .metanav {
 	text-align: right;

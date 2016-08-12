@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class = "react-charts">
+</div>
+<script type = "text/javascript">
+var pageTitle = "Bruce's Progress Tracker";
+var report = JSON.parse('{{report|safe}}');
+console.log(report);
+</script>
+
+<script src = "{{url_for('static',filename = 'js/report.js')}}"></script>
+{% endblock %}

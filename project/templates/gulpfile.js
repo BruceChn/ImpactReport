@@ -53,5 +53,28 @@ gulp.task('progress',function(){
 	build();
 	bundler.on('update',build);
 });
+gulp.task('report',function(){
+	var bundler = watchify(browserify({
+		entries:['./src/report.jsx'],
+		transform:[['babelify',{presets:["react"]}]],
+		extensions:['.jsx'],
+		debug : true,
+		cache:{},
+		packageCache:{},
+		fullPaths:true
+	}));
 
-gulp.task('default',['overview','progress']);
+	function build(file){
+		if(file) gultil.log('Recompiling ' + file);
+		return bundler
+			.bundle()
+			.on('error',gultil.log.bind(gultil,'Browserify Error'))
+			.pipe(source('report.js'))
+			.pipe(gulp.dest('../static/js'));
+
+	}
+	build();
+	bundler.on('update',build);
+});
+
+gulp.task('default',['overview','progress','report']);

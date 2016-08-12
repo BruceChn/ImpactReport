@@ -310,3 +310,48 @@ def progresstrack():
 	writing['series'][0]['data'][1]['y'] = 45
 	writing = json.dumps(writing).replace("'",r"\'")
 	return render_template('progresstracker.html',progress = progress,overall = overall,math = math,science = science,reading = reading,writing = writing)
+
+@users_blueprint.route('/report')
+def report():
+	credits = {
+		'enabled':False
+	}
+	chart = {
+		'type':'line'
+	}
+	title = {
+		'text':'Trending Report',
+		'align' : 'center',
+		'style' :{'fontSize':'2.5em','color':'#808080'}
+	}
+	xAxis = {
+		'categories':['Week1','Week2','Week3','Week4','Week5','Week6','Week7','Week8','Week9']
+	}
+	yAxis = {
+		'title':{
+			'text' : 'Score'
+		},
+		'plotLines':[{
+			'value':0,
+			'width':1,
+			'color':'#808080'
+		}]
+	},
+	series = [{
+		'name':'Overall',
+		'data':[120,160,200,250,400,500,600,700,800]
+	},{
+		'name':'Reading',
+		'data':[80,90,100,150,200,300,400,650,675]
+	},{
+		'name':'Math',
+		'data':[150,180,220,270,410,550,675,725,845]
+	},{
+		'name':'Writing',
+		'data':[125,190,250,300,350,400,425,517,627]
+	},{
+		'name':'Science',
+		'data':[200,280,350,410,480,500,510,620,715]
+	}]
+	report = json.dumps(createOptions(credits,chart,title,xAxis,yAxis,series)).replace("'",r"\'")
+	return render_template("report.html",report = report)
