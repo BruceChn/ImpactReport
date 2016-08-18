@@ -97,8 +97,9 @@ def overview():
 		'data' :[800,500,1000,220,699,700]
 	}]
 	solidgauge = {'type':'solidgauge'}
+	solidgaugetitle = {'text':'Bruce Chan is ranking in the 50 percentile'}
 	pane = {
-		'center':["50%","85%"],
+		'center':["50%","75%"],
 		'size':"140%",
 		'startAngle':-90,
 		'endAngle':90,
@@ -122,10 +123,6 @@ def overview():
 		'lineWidth':0,
 		'minorTickInterval':None,
 		'tickAmount':2,
-		'title':{
-			'text':'Bruce Chan is ranking in the 50 percentile',
-			'y':-150
-		},
 		'labels':{
 			'y':16
 		},
@@ -168,7 +165,7 @@ def overview():
 	### convert python dist to json can pass it to front-end
 	overview_options = json.dumps(createOptions(credits,barchart,title1,xAxis1,yAxis1,series1)).replace("'",r"\'")
 	average_comparion_options = json.dumps(createOptions(credits,barchart,title2,xAxis1,yAxis1,series2)).replace("'",r"\'")
-	percentage_options1 = createOptions(credits,solidgauge,None,None,yAxis2,series3,pane)
+	percentage_options1 = createOptions(credits,solidgauge,solidgaugetitle,None,yAxis2,series3,pane)
 	percentage_options1['plotOptions'] = plotOptions
 	percentage_options1['tooltip'] = tooltip
 
@@ -178,7 +175,7 @@ def overview():
 	regional_average_options = json.dumps(createOptions(credits,barchart,title3,xAxis1,yAxis1,series4)).replace("'",r"\'")
 
 
-	percentage_options2['yAxis']['title']['text'] = "Bruce Chan is ranking in the 80 percentile"
+	percentage_options2['title']['text'] = "Bruce Chan is ranking in the 80 percentile"
 	percentage_options2['series'][0]['data'][0] = 80
 	percentage_options2 = json.dumps(percentage_options2).replace("'",r"\'")
 

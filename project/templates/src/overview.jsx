@@ -27,20 +27,20 @@ var Overview = React.createClass({
   render:function(){
 
     return <div>
-      <div className = "col-xs-12">
-        <HighChart container = {this.state.container1} options = {this.state.overview_options}/>
+
+      <HighChart container = {this.state.container1} options = {this.state.overview_options}/>
+
+      <div className = "chart-wrapper">
+      <HighChart container = {this.state.container2} options = {this.state.average_comparion_options}/>
+
+
+      <HighChart container = {this.state.container3} options = {this.state.percentage_options1} />
       </div>
-      <div className = "col-xs-6">
-        <HighChart container = {this.state.container2} options = {this.state.average_comparion_options}/>
-      </div>
-      <div className = "col-xs-6">
-        <HighChart container = {this.state.container3} options = {this.state.percentage_options1} />
-      </div>
-      <div className = "col-xs-6">
-        <HighChart container = {this.state.container4} options = {this.state.regional_average_options}/>
-      </div>
-      <div className = "col-xs-6">
-        <HighChart container = {this.state.container5} options = {this.state.percentage_options2} />
+      <div className = "chart-wrapper">
+      <HighChart container = {this.state.container4} options = {this.state.regional_average_options}/>
+
+
+      <HighChart container = {this.state.container5} options = {this.state.percentage_options2} />
       </div>
   </div>
 

@@ -29,16 +29,49 @@
 <div class = "react-charts">
 </div>
 <script type = "text/javascript">
-  var overview = true;
-	var overview_options = JSON.parse('{{overview_options|safe}}');
+
+  var height = $(".content").width() * 0.7 * 0.5;
+
+
+  var overview_options = JSON.parse('{{overview_options|safe}}');
+
 	var average_comparion_options = JSON.parse('{{average_comparion_options|safe}}');
+  //average_comparion_options.chart.height = height;
 	var percentage_options1 = JSON.parse('{{percentage_options1|safe}}');
+  //percentage_options1.chart.height = height;
 	var regional_average_options = JSON.parse('{{regional_average_options|safe}}');
+  //regional_average_options.chart.height = height;
 	var percentage_options2 = JSON.parse('{{percentage_options2|safe}}');
+  //percentage_options2.chart.height = height;
 	var pageTitle = "Bruce's Overview";
 
 </script>
 
+
 <script src = "{{url_for('static',filename = 'js/overview.js')}}"></script>
+<script>
+
+function setDivHeight() {
+    var div = $('#react-container2');
+    var newHeight = div.width() * 0.7;
+    div.height(newHeight);
+    div = $('#react-container3');
+    div.height(newHeight);
+    div = $('#react-container4');
+    div.height(newHeight);
+    div = $('#react-container5');
+    div.height(newHeight);
+    div = $('#react-container1');
+    div.height(Math.ceil(div.width() * 0.7));
+
+};
+
+$(document).ready(function(){
+    $(window).resize(function(){
+       setDivHeight();
+    });
+
+});
+</script>
 
 {% endblock %}

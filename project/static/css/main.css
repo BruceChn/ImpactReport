@@ -25,12 +25,46 @@ h1, h2 {
 	h1,h2{
 		font-size:4em;
 	}
-	p{
+	.col-xs-6 p{
 		font-size:4em;
 	}
 
+
 }
 
+
+.chart-wrapper{
+	position:relative;
+	width:100%;
+	padding-bottom:35%;
+}
+#react-container2,#react-container4{
+	position:absolute;
+	width:50%;
+	left:0;
+	height:100%;
+}
+#react-container3,#react-container5{
+	position:absolute;
+	width:50%;
+	right:0;
+}
+#react-conainer1{
+	width:100%;
+}
+@media(max-width : 800px)
+{
+	#react-container2,#react-container3,#react-container4,#react-container5{
+		width:100%;
+		position:relative;
+		left:auto;
+		right:auto;
+		height:auto;
+	}
+	.chart-wrapper{
+		padding-bottom:0%;
+	}
+}
 
 
 h1 {
@@ -77,13 +111,7 @@ h1 {
 	margin-left: -1em;
 }
 
-.add_task {
-	font-size: 0.9em;
-	border-bottom: 1px solid #ccc;
-}
-.add_task dl {
-	font-weight: bold;
-}
+
 .col-sm-12 ul li{
 	font-size:2em;
 	line-height: 1;
