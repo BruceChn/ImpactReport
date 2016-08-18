@@ -12,10 +12,23 @@ body {
 	padding-bottom:30px;
 }
 
-
+p{
+	font-size:1.5em;
+}
 h1, h2 {
 	font-family: 'Georgia', serif;
 	margin: 0;
+	font-size:1.5em;
+}
+
+@media (min-width: 800px){
+	h1,h2{
+		font-size:4em;
+	}
+	p{
+		font-size:4em;
+	}
+
 }
 
 
@@ -25,17 +38,22 @@ h1 {
 }
 
 #logo{
-	width:20em;
-	height:20em;
+
+	/*--height:20em; */
+	max-width: 1024px;
+	max-height: 1024px;
+	height:auto;
+	width: 100%;
 }
 
 #poster{
-	width:60em;
+
 	vertical-align:top;
 
 }
 .image{
 	display:inline-block;
+	width:100%
 }
 
 .page {

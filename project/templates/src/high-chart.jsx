@@ -1,3 +1,5 @@
+// High-chart component
+
 var React = require('react');
 var HighCharts = require('highcharts');
 

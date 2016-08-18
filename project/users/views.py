@@ -34,7 +34,7 @@ def createOptions(credits,chart,title,xAxis,yAxis,series,pane = None):
 
 	return options
 
-### routes
+### routes for overview
 @users_blueprint.route('/',methods = ['GET','POST'])
 @users_blueprint.route('/overview')
 def overview():
@@ -165,7 +165,7 @@ def overview():
 		'color' : "#00BFFF",
 		'data':[200,300,500,700,600,500]
 	}]
-
+	### convert python dist to json can pass it to front-end
 	overview_options = json.dumps(createOptions(credits,barchart,title1,xAxis1,yAxis1,series1)).replace("'",r"\'")
 	average_comparion_options = json.dumps(createOptions(credits,barchart,title2,xAxis1,yAxis1,series2)).replace("'",r"\'")
 	percentage_options1 = createOptions(credits,solidgauge,None,None,yAxis2,series3,pane)
@@ -174,12 +174,15 @@ def overview():
 
 	percentage_options2 = percentage_options1
 	percentage_options1 = json.dumps(percentage_options1).replace("'",r"\'")
+
 	regional_average_options = json.dumps(createOptions(credits,barchart,title3,xAxis1,yAxis1,series4)).replace("'",r"\'")
 
 
 	percentage_options2['yAxis']['title']['text'] = "Bruce Chan is ranking in the 80 percentile"
 	percentage_options2['series'][0]['data'][0] = 80
 	percentage_options2 = json.dumps(percentage_options2).replace("'",r"\'")
+
+	### incase we need use login feature in the future
 	if 'logged_in' in session:
 		return redirect(url_for("overview.overview"))
 	if request.method == 'POST':
@@ -192,7 +195,7 @@ def overview():
 				error = "Invalid username or password"
 	return render_template('overview.html',form = form,error = error,overview_options = overview_options,average_comparion_options = average_comparion_options,percentage_options1 = percentage_options1,regional_average_options = regional_average_options,percentage_options2 = percentage_options2)
 
-
+###routes for progress tracker
 @users_blueprint.route('/progresstracker')
 def progresstrack():
 	credits = {
@@ -311,8 +314,10 @@ def progresstrack():
 	writing = json.dumps(writing).replace("'",r"\'")
 	return render_template('progresstracker.html',progress = progress,overall = overall,math = math,science = science,reading = reading,writing = writing)
 
+###routes for report
 @users_blueprint.route('/report')
 def report():
+	### Highchart Options
 	credits = {
 		'enabled':False
 	}
