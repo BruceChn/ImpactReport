@@ -32,8 +32,6 @@ var Overview = React.createClass({
 
       <div className = "chart-wrapper">
       <HighChart container = {this.state.container2} options = {this.state.average_comparion_options}/>
-
-
       <HighChart container = {this.state.container3} options = {this.state.percentage_options1} />
       </div>
       <div className = "chart-wrapper">

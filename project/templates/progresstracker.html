@@ -1,4 +1,7 @@
 {% extends "_base.html" %}
+{% block head %}
+  <link rel = "stylesheet" href = {{url_for('static',filename ="css/progress.css")}}>
+{% endblock head %}
 {% block content %}
 <div class = "react-charts">
 </div>
@@ -11,8 +14,10 @@
   var science = JSON.parse('{{science|safe}}');
   var reading = JSON.parse('{{reading|safe}}');
   var writing = JSON.parse('{{writing|safe}}');
+	console.log(progress.series[0]);
 
 </script>
 
 <script src = "{{url_for('static',filename = 'js/progress.js')}}"></script>
+
 {% endblock %}

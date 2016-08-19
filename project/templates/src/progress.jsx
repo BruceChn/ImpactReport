@@ -27,25 +27,19 @@ var ProgressTracker = React.createClass({
   },
   render:function(){
     return <div>
-      <div className = "col-sm-6">
+      <div className = "chart-wrapper0">
         <HighChart options = {this.state.progress} container = {this.state.container1}/>
-      </div>
-      <div className = "col-sm-6">
         <HighChart options = {this.state.overall} container = {this.state.container2}/>
       </div>
-      <div className = "col-sm-12">
-        <h1 style = {{textAlign:"center"}}>Percentage Level Complete</h1>
-      </div>
-      <div className = "col-sm-6">
+      <h1 style = {{textAlign:"center"}}>Percentage Level Complete</h1>
+      <div className = "chart-wrapper">
+
         <HighChart options = {this.state.math} container = {this.state.container3}/>
-      </div>
-      <div className = "col-sm-6">
+
         <HighChart options = {this.state.science} container = {this.state.container4}/>
       </div>
-      <div className = "col-sm-6">
+      <div className = "chart-wrapper">
         <HighChart options = {this.state.reading} container = {this.state.container5}/>
-      </div>
-      <div className = "col-sm-6">
         <HighChart options = {this.state.writing} container = {this.state.container6}/>
       </div>
     </div>

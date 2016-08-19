@@ -9,7 +9,8 @@
 		<title>Impact Report</title>
 
 		<link rel = "stylesheet" href = "{{ url_for('static',filename = 'css/bootstrap.min.css')}}">
-		<link rel = "stylesheet" href = "{{ url_for('static',filename = 'css/main.css')}}">
+		{% block head %}
+		{% endblock head %}
 		<script src = "{{url_for('static',filename = 'js/jquery.js')}}"></script>
 		<script src = "{{url_for('static',filename = 'js/bootstrap.js')}}"></script>
 

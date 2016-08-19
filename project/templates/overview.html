@@ -1,4 +1,7 @@
 {% extends "_base.html" %}
+{% block head %}
+  <link rel = "stylesheet" href = {{url_for('static',filename ="css/overview.css")}}>
+{% endblock%}
 {% block content %}
 
 <!--<form class = "form-signin" role = "form" method = "POST" >

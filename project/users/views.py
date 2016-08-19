@@ -199,7 +199,12 @@ def progresstrack():
 		'enabled':False
 	}
 	semidonut = {
-		'type':'pie'
+		'type':'pie',
+		'margin': [0, 0, 0, 0],
+        'spacingTop': 0,
+        'spacingBottom': 0,
+        'spacingLeft': 0,
+        'spacingRight': 0
 	}
 	title ={
 		'text':'Level 1 Training Program',
@@ -223,17 +228,18 @@ def progresstrack():
 			},
 			'startAngle':-90,
 			'endAngle':90,
-			'center':['50%',"75%"],
-			'size':'125%'
+			'center':['50%',"80%"],
+			'size':'100%'
 		}
 	}
 	subtitle = {
 		'verticalAlign':'middle',
 		'align':'center',
 		'text' : "Level 1",
-		'y' : 85,
+		'y' : 55,
+		#'float':True,
 		'style':{
-			'font-size':'35px',
+			'font-size':'1.5em',
 			'fontWeight':'bold'
 		}
 	}
@@ -247,7 +253,12 @@ def progresstrack():
 		],
 		'innerSize':'45%',
 		'dataLabels':{
-            'format': r'<div style = \"text-align:center;\"><span style = \"font-size:35px\">{point.name}-{point.percentage:.lf}%</span></div>'
+            'format': r"{point.name}<br/>{point.percentage:.lf}%",
+			'style':{
+				'fontSize':'0.8em'
+			},
+			'y':-19,
+			'distance':-40
 		}
     }]
 	progress = createOptions(credits,semidonut,title,None,None,series)
